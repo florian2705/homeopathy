@@ -4,7 +4,14 @@
   "description": "homeopatic remedies based on drupat system",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.11.2"
+    "body-parser": "^1.11.0",
+    "express": "^4.11.2",
+    "hbs": "^2.8.0",
+    "moment": "^2.9.0",
+    "mongodb": "^1.4.30",
+    "mongoose": "^3.8.22",
+    "monk": "^0.9.1",
+    "sylvester": "0.0.21"
   },
   "devDependencies": {},
   "scripts": {
