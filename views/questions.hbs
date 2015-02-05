@@ -47,24 +47,25 @@
 <body>
 
   <header>
-      <h1>{{language}}</h1>
   </header>
  
 
   <!-- NAV menu -->
   <ul class="nav nav-tabs" id="myTab">
-    <li class="active"><a href="#home">Drupal Hoomeopathy</a></li>
+    <li class="active"><a href="#home">Drupat Hoomeopathy</a></li>
 
     <!-- TAB menues -->
-    <li><a href="#analyze">Do the Test</a></li>
+    <li><a flo="yes" href="#analyze">Do the Test</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#sources">Sources</a></li>
-    <li><a href="#admin" class="nav navbar-nav navbar-right">Admin</a></li>
+
+    <!-- Admin Menu -->
+    <li class="nav nav-tabs navbar-right"> <a href="#admin">Admin</a> </li>
 
     <!-- Language dropdown menu -->
-     <li class="dropdown"> 
+     <li class="nav nav-tabs navbar-right dropdown"> 
       <a href="#" id="myTabDropLang" class="dropdown-toggle" data-toggle="dropdown"> 
-         Languages <b class="caret"></b>
+         Languages({{language}}) <b class="caret"></b>
       </a> 
       <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDropLang"> 
         <li><a href='/de'>Deutsch</a></li>
@@ -81,10 +82,10 @@
 
     <div id='content' class="tab-content">
 
-     <div class="tab-pane active" id="admin">
+     <div class="tab-pane" id="admin">
       	<h2>Admin Only!</h2>
-  		<a href="/admin/questionlist">Past Questions</a>
-      </div>
+  	<a href="/admin/questionlist">Past Questions</a>
+     </div>
 
 
       <div class="tab-pane active" id="home">
@@ -173,9 +174,12 @@
 
    <script  type="text/javascript" charset="utf-8">
 	$('#myTab a').click(function (e) {
-		console.log("tab clicked..");
-		e.preventDefault()
-  		$(this).tab('show')
+		console.log("tab clicked.." + "e.target: " + e.target + " this: " + $(this) );
+                var myhref = e.target + "";
+		if ( myhref.indexOf("#") > -1 ) {
+			e.preventDefault()
+	  		$(this).tab('show')
+		}
 	})
   </script>
 
