@@ -49,22 +49,34 @@
   <header>
       <h1>{{language}}</h1>
   </header>
+ 
 
-  <ul class = "languageSelector">
-	<li><a href='/de'>Deutsch</a></li>
-	<li><a href='/en'>English</a></li>
-	<li><a href='/es'>Espanol</a></li>
-	<li><a href='/eo'>Esperanto</a></li>
-	<li><a href='/fr'>Francais</a></li>
-	<li><a href='/it'>Italiano</a></li>
-  </ul>
-
+  <!-- NAV menu -->
   <ul class="nav nav-tabs" id="myTab">
-    <li class="active"><a href="#home">Home</a></li>
-    <li><a href="#analyze">Analyze</a></li>
+    <li class="active"><a href="#home">Drupal Hoomeopathy</a></li>
+
+    <!-- TAB menues -->
+    <li><a href="#analyze">Do the Test</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#sources">Sources</a></li>
-    <li><a href="#admin">Admin</a></li>
+    <li><a href="#admin" class="nav navbar-nav navbar-right">Admin</a></li>
+
+    <!-- Language dropdown menu -->
+     <li class="dropdown"> 
+      <a href="#" id="myTabDropLang" class="dropdown-toggle" data-toggle="dropdown"> 
+         Languages <b class="caret"></b>
+      </a> 
+      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDropLang"> 
+        <li><a href='/de'>Deutsch</a></li>
+        <li><a href='/en'>English</a></li>
+        <li><a href='/es'>Espanol</a></li>
+        <li><a href='/eo'>Esperanto</a></li>
+        <li><a href='/fr'>Francais</a></li>
+        <li><a href='/it'>Italiano</a></li>
+      </ul> 
+   </li> 
+
+
   </ul>
 
     <div id='content' class="tab-content">
