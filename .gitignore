@@ -1,0 +1,2 @@
+# dont sync node modules.
+node_modules

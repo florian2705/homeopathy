@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  background: #EEE;
+  width: 90%;
+  margin-bottom: 5px;
+}
+
+.item {
+  width:  80px;
+  //height: 120px;
+  float: left;
+  border: 1px solid;
+  background: orange;
+}
+
+
+.container .item {
+  width: 130px;
+  margin: 5px;
+  float: left;
+}
+
+.container .item img {
+  display: block;
+  width: 100%;
+  border: 2px solid;
+
+}
+
+h1 {
+ background: orange;
+}
+
+.answer{
+	position: relative; 
+	left: 20px;
+	top: -1px;
+        color: red;
+      
+}
+
+.faqquestion{
+     color: red;
+}
+.faqanswer{
+     color: blue;
+}
+
