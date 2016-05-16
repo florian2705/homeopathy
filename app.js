@@ -323,9 +323,9 @@ var moment = require('moment');
 
 // start http server.
 var server = app.listen(conf.server.port, function () {
-  var ip = conf.server.ip; // server.address().address
+  var host = conf.server.host; // server.address().address
   var port = conf.server.port; //  server.address().port
-  console.log('homeopathy app listening at http://%s:%s', ip, port)
+  console.log('homeopathy app listening at http://%s:%s', host, port)
   console.log("time is: " + moment().format() );
 })
 
