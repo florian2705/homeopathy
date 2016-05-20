@@ -1,21 +1,23 @@
-var mongo = require('mongodb');
+//var mongo = require('mongodb');
 var monk = require('monk');
+
+console.log("monk is connecting to db..")
 var db = monk('localhost:27017/homeopathy');
-var ObjectID = mongo.ObjectID;
 
+//var ObjectID = mongo.ObjectID;
 // MONGOOSE is used to aggregate names with the number of fotos
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
-mongoose.connect("mongodb://localhost/homeopathy");
-
-fotoSchema = new Schema({
-  "name": String,
-  "url": String
-});
-memberSchema = new Schema({
-  friends: [fotoSchema]
-});
-var fotoModel = mongoose.model("fotos", fotoSchema );
+//var mongoose = require("mongoose");
+//var Schema = mongoose.Schema;
+//console.log ("connecting to database")
+//mongoose.connect("mongodb://localhost/homeopathy");
+//fotoSchema = new Schema({
+//  "name": String,
+//  "url": String
+//});
+//memberSchema = new Schema({
+//  friends: [fotoSchema]
+//});
+//var fotoModel = mongoose.model("fotos", fotoSchema );
 
 
 var moment = require('moment');

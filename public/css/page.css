@@ -1,0 +1,22 @@
+/* Reset */
+html, body { height: 100%; margin: 0; padding: 0; }
+
+
+/* Aestetics */
+.container1 { width: 100%; height: 100%; }
+.header1, .footer1 { padding: 10px 20px; background: red; }
+.content-body1 { padding: 20px;  background: orange;   max-width: 1200px;}
+
+p {
+    background: green;
+}
+
+/* Essentials */
+@media screen and (max-width: 800px) {
+  .container1 { display: table; }
+  .content1 { display: table-row; height: 100%; }
+  .content-body1 { display: table-cell; background: #CCCCCC;}
+
+  p { background: yellow; }
+
+}

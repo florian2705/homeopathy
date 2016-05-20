@@ -7,266 +7,75 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  
-  <!-- CSS -->
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+  <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-
-  <!-- JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="/css/fotos.css">
- 
 
-<style type="text/css">
+  <link rel="stylesheet" href="/css/page.css">
 
-  .question {
-     font-size:large;
-     font-family:verdana, sans-serif;
-     color:#ff0000;
-   }
-   
-  .hidden {
-     style: "display:none;
-  }
+  <style type="text/css">
 
+  </style>
 
- .btn.btn-primary-bg{
-      background-color: red;
-   }
-
-   .btn.btn-primary {
-      background-color: yellow;
-   }
-
-   .btn.btn-primary.active {
-      background-color: green;
-
-   }
-  
-    .btn.btn-primary.hover {
-      background-color: orange;
-    }
-   .btn.btn-primary.hover {
-      background-color: gray;
-   }
-</style>
-
-
-
+</head>
 
 <body>
 
-  <header>
-  </header>
- 
-
-  <!-- NAV menu -->
-  <ul class="nav nav-tabs" id="myTab">
-    <li class="active"><a href="#home">Drupat Hoomeopathy</a></li>
-
-    <!-- TAB menues -->
-    <li><a flo="yes" href="#analyze">Do the Test</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#sources">Sources</a></li>
-
-    <!-- Admin Menu -->
-    <li class="nav nav-tabs navbar-right"> <a href="#admin">Admin</a> </li>
-
-    <!-- Language dropdown menu -->
-     <li class="nav nav-tabs navbar-right dropdown"> 
-      <a href="#" id="myTabDropLang" class="dropdown-toggle" data-toggle="dropdown"> 
-         Languages({{language}}) <b class="caret"></b>
-      </a> 
-      <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDropLang"> 
-        <li><a href='/de'>Deutsch</a></li>
-        <li><a href='/en'>English</a></li>
-        <li><a href='/es'>Espanol</a></li>
-        <li><a href='/eo'>Esperanto</a></li>
-        <li><a href='/fr'>Francais</a></li>
-        <li><a href='/it'>Italiano</a></li>
-      </ul> 
-   </li> 
-
-
-  </ul>
-
-    <div id='content' class="tab-content">
-
-     <div class="tab-pane" id="admin">
-      	<h2>Admin Only!</h2>
-  	<a href="/admin/questionlist">Past Questions</a>
-     </div>
-
-
-      <div class="tab-pane active" id="home">
-      	<h2>{{app.aboutTitle}}</h2>
-  		<p>{{app.aboutText}}</p>
-  		<h2>{{app.goalTitle}}</h2>
-  		<p>{{app.goalText}}</p>
-      </div>
-
-
-      <div class="tab-pane" id="faq">
-		<h1>FAQ</h1>
-  		<ul>
-	  		{{#each faq}}
-				<li> <p class="faqquestion">{{q}}</p> <p class="faqanswer">{{a}}</p></li>
-  			{{/each}}
-		</ul>
-
-      </div>
-
-
-      <div class="tab-pane" id="sources">
-		<h1>{{app.sourceTitle}}</h1>
-  		<p>{{app.sourceText}}</p>
-  		<ul>
-	  		{{#each sources}}
-				<li>{{this}}</li>
-  			{{/each}}
-		</ul>
-      </div>
-
-        <div class="tab-pane" id="analyze" >
-		
-	  <form method="post" action="/sendquestions" method="post">
-	  <fieldset>
-     	  <legend>Find out our constitutional remedy</legend>
-
-             <div class="page" id="startPage">
-                <h2>The test will find out your constitutional remedy. You have to answer 250 questions, so take your time. The result will be worth it! </h2>
-                <button type="button" id="startTest" >Start the test</button>
-             </div>                      
-
-             <div class="page hidden" id="testPage" >
-   	       {{#each questions}}   
-                   <div class="myquestion hidden" > 
-                      <p class="question">{{text}}</p>
-                      <div class="answer">
-                          <div class="btn-group" data-toggle="buttons"> 
-                              <label class="btn btn-primary"><input type="radio" name="{{nr}}" value ="?" checked>?</label> 
-                              <label class="btn btn-primary"><input type="radio" name="{{nr}}" value="2">NO</label> 
-                              <label class="btn btn-primary"><input type="radio" name="{{nr}}" value="4">A LITTLE</label> 
-                              <label class="btn btn-primary"><input type="radio" name="{{nr}}" value="6">A LOT</label> 
-                              <label class="btn btn-primary"><input type="radio" name="{{nr}}" value="8">YES</label> 
-                          </div>
-                      </div> 
-	              <br>
-                   </div>  
-	       {{/each}}
-               <button type="button" class="hidden" id="prevQuestionButton">Prev</button>
-               <button type="button" class="hidden" id="nextQuestionButton" >Next</button>
-               <progress value="0" max="100"></progress>
-             </div> <!-- end of page questions -->
-
-              <div class ="page hidden" id="submitPage">
-                  <input type="text" name="username" id="username" placeholder="What is your name? (Required)" />
-    	          <input type="submit" value="Find out your remedy!" /> 
-              </div> <!-- end of page submitQuestions -->
-
-              </fieldset>
-              </form>
-
-        </div>
-    </div>   
- 
-
-
-   <script  type="text/javascript" charset="utf-8">
-
-	$('#myTab a').click(function (e) {
-		console.log("tab clicked.." + "e.target: " + e.target + " this: " + $(this) );
-                var myhref = e.target + "";
-		if ( myhref.indexOf("#") > -1 ) {
-			e.preventDefault()
-	  		$(this).tab('show')
-		}
-	})
-
-        var currentNumber = 0;
-        var totalNumber =  $("div.myquestion").length;
-
-        var currentValidCount= 0;
-        var currentQuestion = $('div.myquestion').first();
-        currentQuestion.removeClass("hidden");
-        $("progress").attr("max", totalNumber );
-
-        var setButtonVisibility = function () {
-          if (currentNumber === 0) {
-             $('#prevQuestionButton').addClass("hidden");
-          }else {
-             $('#prevQuestionButton').removeClass("hidden");
-          }
-          
-          if ( $(currentQuestion).find(".active").length >0) {
-             $('#nextQuestionButton').removeClass("hidden");
-          } else {
-             $('#nextQuestionButton').addClass("hidden");
-          }
-
-        }
-
-
-        var moveNext = function () {
-          currentQuestion.addClass("hidden");
-          currentQuestion = currentQuestion.next();
-          currentQuestion.removeClass("hidden");
-          currentNumber = currentNumber +1;
-          $("progress").val( currentNumber);
-          setButtonVisibility();
-          if (currentNumber>=totalNumber) { 
-             $('#testPage').addClass("hidden");
-             $('#submitPage').removeClass("hidden");
-          }
-        }
-
-        var movePrev = function () {
-          if (currentNumber >0) {
-            currentQuestion.addClass("hidden");
-            currentQuestion = currentQuestion.prev();
-            currentQuestion.removeClass("hidden");
-            currentNumber = currentNumber -1;
-            $("progress").val( currentNumber);
-            setButtonVisibility();
-          }
-       }
-
-
-       $('#nextQuestionButton').click( function (e) {
-          console.log("next clicked.." + "e.target: " + e.target + " this: " + $(this) );
-          moveNext();
-        });
-
-     $('div.answer input').change( function (e) {
-          console.log("radioutton clicked.." + "e.target: " + e.target + " this: " + $(this) );
-          moveNext();
-        });
-
-      $('#prevQuestionButton').click( function (e) {
-          console.log("prev clicked.." + "e.target: " + e.target + " this: " + $(this) );
-          movePrev();
-        });
-
+ <div class="container1">
   
+   <header class="header1">
+    <p>my header</p>
+   </header>
 
-       $('#startTest').click ( function (e) {
-          $('#startPage').addClass("hidden");
-          $('#testPage').removeClass("hidden");
-       });
+   <section class="content1">
+     
+    <div class="content-body1">
 
-        function toggle_visibility(id) {
-            var e = document.getElementById(id);
-            e.style.display = ((e.style.display!='none') ? 'none' : 'block');
-        }
-
-
-  </script>
+      <div class="myNAV">
 
 
+      {{> nav}}
 
+      <div class="tab-content" id="myTabContent" >
+        
+         <div class="tab-pane active" id="about">
+           {{>about}}
+          </div>
 
+          <div class="tab-pane" id="faq">
+              {{>faq}}
+          </div>
 
+          <div class="tab-pane" id="literature">
+               {{>literature}}
+          </div>
+
+          <div class="tab-pane" id="test" >
+              {{>questionaire}}
+          </div>   
+
+          <div class="tab-pane" id="admin">
+               {{>admin}}
+          </div>
+
+      </div> <!-- tab-content   -->
+
+      </div>
+
+    </div> <!-- content-body -->
+
+  </section>
+
+   <footer class="footer1">
+   <p>my footer </p>
+   </footer>
+
+</div> <!-- container -->
 </body>
 </html>

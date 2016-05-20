@@ -1,0 +1,124 @@
+<link rel="stylesheet" type="text/css" href="/css/questionaire.css">
+
+<form method="post" action="/sendquestions" method="post">
+<fieldset>
+<legend>Find out our constitutional remedy</legend>
+
+        <div class="page" id="startPage">
+           <h2>The test will find out your constitutional remedy. You have to answer 250 questions, so take your time. The result will be worth it! </h2>
+           <button type="button" id="startTest" >Start the test</button>
+        </div>                      
+
+        <div class ="page hidden" id="submitPage">
+           <input type="text" name="username" id="username" placeholder="What is your name? (Required)" />
+	         <input type="submit" value="Find out your remedy!" /> 
+        </div> <!-- end of page submitPage -->
+
+        <div class="page hidden" id="testPage" >
+   	       {{#each questions}}   
+                   <div class="myquestion hidden" > 
+
+                      <p class="question">{{text}}</p>
+                      <div class="answer">
+                          <div class="btn-group" data-toggle="buttons"> 
+                              <label class="btn btn-primary"><input type="radio" name="{{nr}}" value ="?">?</label> 
+                              <label class="btn btn-primary"><input type="radio" name="{{nr}}" value="2">NO</label> 
+                              <label class="btn btn-primary"><input type="radio" name="{{nr}}" value="4">A LITTLE</label> 
+                              <label class="btn btn-primary"><input type="radio" name="{{nr}}" value="6">A LOT</label> 
+                              <label class="btn btn-primary"><input type="radio" name="{{nr}}" value="8">YES</label> 
+                          </div>
+                      </div> <!-- answer --> 
+	                  <br>
+                   </div>  <!-- myquestion -->
+	         {{/each}}
+           <button type="button" class="hidden" id="prevQuestionButton">Prev</button>
+           <progress value="0" max="100"></progress>
+           <button type="button" class="hidden" id="nextQuestionButton" >Next</button>
+
+           <p id="progressText">0 of 100</p>
+       </div> <!-- end of page questions -->
+
+ </fieldset>
+ </form>
+
+ <script  type="text/javascript" charset="utf-8">
+
+  var currentNumber = 0;
+  var totalNumber =  $("div.myquestion").length;
+
+  var currentValidCount= 0;
+  var currentQuestion = $('div.myquestion').first();
+  currentQuestion.removeClass("hidden");
+  $("progress").attr("max", totalNumber );
+
+  var setButtonVisibility = function () {
+     if (currentNumber === 0) {
+        $('#prevQuestionButton').addClass("hidden");
+     }else {
+        $('#prevQuestionButton').removeClass("hidden");
+     }     
+  
+      if ($(currentQuestion).find("input").is(":checked") ){
+        $('#nextQuestionButton').removeClass("hidden");
+     } else {
+        $('#nextQuestionButton').addClass("hidden");
+     }
+  }
+
+  var showProgress = function () {
+     $("progress").val( currentNumber);
+     $("#progressText").text (currentNumber + "/" + totalNumber);
+   }
+
+showProgress();
+
+
+        var moveNext = function () {
+          currentQuestion.addClass("hidden");
+          currentQuestion = currentQuestion.next();
+          currentQuestion.removeClass("hidden");
+          currentNumber = currentNumber +1;
+          showProgress();
+          setButtonVisibility();
+          if (currentNumber>=totalNumber) { 
+             $('#testPage').addClass("hidden");
+             $('#submitPage').removeClass("hidden");
+          }
+    
+        }
+
+        var movePrev = function () {
+          if (currentNumber >0) {
+            currentQuestion.addClass("hidden");
+            currentQuestion = currentQuestion.prev();
+            currentQuestion.removeClass("hidden");
+            currentNumber = currentNumber -1;
+            showProgress();
+            setButtonVisibility();
+          }
+       }
+
+       $('#nextQuestionButton').click( function (e) {
+          console.log("next clicked.." + "e.target: " + e.target + " this: " + $(this) );
+          moveNext();
+        });
+
+     $('div.answer input').change( function (e) {
+          console.log("radiobutton change.." + "e.target: " + e.target + " this: " + $(this) );
+          moveNext();
+        });
+
+      $('#prevQuestionButton').click( function (e) {
+          console.log("prev clicked.." + "e.target: " + e.target + " this: " + $(this) );
+          movePrev();
+        });
+  
+       $('#startTest').click ( function (e) {
+          console.log ("start clicked..");
+          $('#startPage').addClass("hidden");
+          $('#testPage').removeClass("hidden");
+       });
+
+
+
+ </script>

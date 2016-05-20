@@ -293,10 +293,7 @@ return answers;
 // external modules
 var http = require('http');		// http server (without express framework)
 var express = require('express');	// express framework (page routing)
-var hbs = require ('hbs');			// handlebars template system
-
-
-
+var hbs = require ('express-hbs');			// handlebars template system
 
 
 // express.js engine
@@ -313,10 +310,14 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 //app.use(express.json());      // if needed
 
 
-
 // set the view engine to use handlebars
 app.set ('view engine', 'hbs');
 app.set('views', __dirname + '/views'); // rendered views
+
+app.engine('hbs', hbs.express4({
+    partialsDir: __dirname + '/views'
+}));
+
 
 
 var moment = require('moment');
@@ -337,8 +338,6 @@ var db = require('./database.js');
 console.log("Testing with demo data..");
 var demo = require('./model_demo_data.js');
 var demo_remedy = model.find_remedies (demo.data,false); // log the first time..
-
-
 
 
 var texte = require('./texte.js');
@@ -440,6 +439,19 @@ app.get('/admin/question/:id', function(req, res) {
 
 
 // QUESTIONAIRE RENDERING **********************************************************************
+
+
+app.get('/x', function(req, res) {
+	      res.locals = {
+            language: 'de',
+            questions: texte.questions.de,
+	          app: texte.app.de,
+	          sources: texte.sources,
+	          faq: texte.faq.de,
+        }
+	      res.render('q2');
+});
+
 
 
 
